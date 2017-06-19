@@ -8,83 +8,112 @@
 
 import UIKit
 
-class PopupBaseController: UIViewController {
-
-//    @IBOutlet weak var popupView: UIView!
-//    @IBOutlet weak var ImageContainerView: UIView!
-//    @IBOutlet weak var splitContainerView: UIView!
-//    @IBOutlet weak var spliteLine: UIView!
-//    @IBOutlet weak var titleLabel: UILabel!
-//    var popupTitle: String?
-//    var message: String?
+open class PopupBaseController: UIViewController {
     
     private var popupView = UIView()
-    private var buttonView = UIView()
-    private var contentView = UIView()
+    private var buttonView = UIStackView()
+    private var contentView: UIView!
     
-    public  var popupWidth: CGFloat { return 270.0 }
-    private var buttonHeight: CGFloat = 54.0
-    private var buttons = [UIButton]()
-    public  var actions = [PopupAction]()
+    let popupWidth: CGFloat = 270.0
+    let buttonHeight: CGFloat = 54.0
+    let padding: CGFloat = 25.0
     
-    // MARK: - initial
-//    static func initial(title: String?, message: String?) -> PopupBaseViewController {
-//        let storyboard = UIStoryboard(name: "Popup", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "PopupBaseViewController") as! PopupBaseViewController
-//        vc.popupTitle = title
-//        vc.message = message
-//        return vc
-//    }
+    var buttons = [UIButton]()
+    var actions = [PopupAction]()
     
-    func setupContenView(view: UIView) {
-        self.contentView.addSubview(view)
-        self.contentView.frame = CGRect(x: 0, y: 0, width: popupWidth, height: view.frame.height)
+    var message:String?
+    
+    // MARK: - Initial
+    
+    public convenience init(title: String?, message: String?) {
+        self.init()
+        print("init")
+        self.title = title
+        self.message = message
     }
     
+    public func show(in viewController: UIViewController) {
+        print("show")
+        definesPresentationContext = true
+        modalPresentationStyle = .overFullScreen
+        view.alpha = 0.0
+        viewController.present(self, animated: false, completion: {
+            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.alpha = 1.0
+                self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            })
+        })
+    }
+
     func addAction(action: PopupAction) {
         print("addAction")
         self.actions.append(action)
     }
-
-    // MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.white
-        
-        self.configurePopupView()
-        self.configureButtons()
-
-//        self.titleLabel.text = popupTitle
-//        self.setupMessage(message: message)
-//        self.configureButtonView()
+    
+    func addAction(title: String?, handler: (() -> Void)? = nil) {
+        print("addAction")
+        let action = PopupAction(title: title, handler: handler)
+        self.actions.append(action)
     }
     
-    // MARK: - Configure
-    func configurePopupView() {
-        
-        // Step 1: Setup Popup View
-        view.addSubview(popupView)
+    func setupContenView(view: UIView) {
+        print("setupContenView")
+        self.contentView = view
+    }
 
-        popupView.translatesAutoresizingMaskIntoConstraints = false
-        popupView.backgroundColor = UIColor.black
-        popupView.layer.cornerRadius = 10.0
-        popupView.layer.masksToBounds = true
-        popupView.addSubview(contentView)
-        popupView.addSubview(buttonView)
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = UIColor.red
-        
-        buttonView.translatesAutoresizingMaskIntoConstraints = false
-        buttonView.backgroundColor = UIColor.blue
-        
-  
-        // Step 2: Setup Constraints
+    // MARK: - Lifecycle
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        print("viewDidLoad")
+        self.configurePopupView()
         self.setupConstraints()
     }
     
-    func setupConstraints() {
+    // MARK: - Configure
+    
+    private func configurePopupView() {
+        
+        // Setup 'view'
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+        view.addSubview(popupView)
+
+        // Setup 'popup view'
+        popupView.translatesAutoresizingMaskIntoConstraints = false
+        popupView.backgroundColor = UIColor.lightGray
+        popupView.layer.cornerRadius = 10.0
+        popupView.layer.masksToBounds = true
+        
+        // Setup 'content view'
+        if contentView == nil {
+            contentView = defaultContentView()
+        }
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = UIColor.white
+        popupView.addSubview(contentView)
+        
+        // Setup 'buttons'
+        for action in actions {
+            let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.backgroundColor = .gray
+            button.setTitle(action.title, for: .normal)
+            button.addTarget(self, action: #selector(didClickButton(_:)), for: .touchUpInside)
+            self.buttons.append(button)
+            self.buttonView.addArrangedSubview(button)
+        }
+        
+        // Setup 'button view'
+        buttonView.translatesAutoresizingMaskIntoConstraints = false
+        buttonView.backgroundColor = UIColor.blue
+        buttonView.spacing = 1
+        buttonView.axis = (buttons.count == 2) ? .horizontal : .vertical
+        buttonView.distribution = .fillEqually
+        popupView.addSubview(buttonView)
+    }
+    
+    private func setupConstraints() {
         
         // Popup View
         popupView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -99,7 +128,7 @@ class PopupBaseController: UIViewController {
         contentView.heightAnchor.constraint(equalToConstant: contentViewHeight).isActive = true
         
         // Button View
-        buttonView.topAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        buttonView.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 1).isActive = true
         buttonView.leadingAnchor.constraint(equalTo: popupView.leadingAnchor).isActive = true
         buttonView.trailingAnchor.constraint(equalTo: popupView.trailingAnchor).isActive = true
         buttonView.bottomAnchor.constraint(equalTo: popupView.bottomAnchor).isActive = true
@@ -110,54 +139,7 @@ class PopupBaseController: UIViewController {
         buttonView.heightAnchor.constraint(equalToConstant: buttonViewHeight).isActive = true
     }
     
-    
-    /*func setupMessage(message: String?) {
-        let width = self.contentView.frame.width
-        let content = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: 1000))
-        content.text = self.message
-        content.textAlignment = .center
-        content.numberOfLines = 0
-        content.sizeToFit()
-        content.backgroundColor = UIColor.red
-        print(content.frame.height)
-        if content.frame.height > self.contentView.frame.height {
-            contentViewHeightConstraint.constant = content.frame.height
-        }
-        contentView.addSubview(content)
-    }*/
-    
-    func configureButtons() {
-        
-        for (index, action) in actions.enumerated() {
-            
-            // Calculate button frame
-            let isTwoButtonLayout = (actions.count == 2)
-            let x      = isTwoButtonLayout && index == 1 ? popupWidth / 2 : 0
-            let y      = isTwoButtonLayout ? 0 : CGFloat(index) * buttonHeight
-            let width  = isTwoButtonLayout ? popupWidth / 2 : popupWidth
-            let height = buttonHeight
-
-            // Setup Button
-            let button = UIButton(frame: CGRect(x: x, y: y, width: width, height: height))
-            button.backgroundColor = .gray
-            button.setTitle(action.title, for: .normal)
-            button.addTarget(self, action: #selector(didClickButton(_:)), for: .touchUpInside)
-            self.buttons.append(button)
-            self.buttonView.addSubview(button)
-            
-            // Setup horizontal line
-            let line = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 3))
-            line.backgroundColor = UIColor.yellow
-            button.addSubview(line)
-            
-            // Setup Vertical line
-            if actions.count == 2 && index == 1 {
-                let line = UIView(frame: CGRect(x: 0, y: 0, width: 3, height: height))
-                line.backgroundColor = UIColor.yellow
-                button.addSubview(line)
-            }
-        }
-    }
+    // MARK: - Action
     
     func didClickButton(_ sender: UIButton) {
         if let index = buttons.index(of: sender) {
@@ -165,8 +147,46 @@ class PopupBaseController: UIViewController {
             if let handler = actions[index].handler {
                 handler()
             }
-            // Dismiss Popup
-            self.navigationController?.popViewController(animated: true)
+            // Close Popup
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                self.view.alpha = 0.0
+            }, completion: { finished in
+                self.dismiss(animated: false, completion: nil)
+            })
         }
+    }
+    
+    // MARK: - Default Content View
+    private func defaultContentView() -> UIView {
+        
+        let contentWidth = popupWidth - padding * 2
+        let titleFont = UIFont(name: "Avenir-Medium", size: 17)!
+        let messageFont = UIFont(name: "Avenir-Book", size: 14)!
+        
+        let titleLabel = sizeToFitLabel(text: title, width: contentWidth, font: titleFont)
+        titleLabel.backgroundColor = .blue
+        let messageLabel = sizeToFitLabel(text: message, width: contentWidth, font: messageFont)
+        messageLabel.backgroundColor = UIColor.brown
+        
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, messageLabel])
+        let stackViewHeight = titleLabel.frame.height + messageLabel.frame.height
+        stackView.frame = CGRect(x: padding, y: padding, width: contentWidth, height: stackViewHeight)
+        stackView.axis = .vertical
+        
+        contentView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: popupWidth, height: stackViewHeight + padding * 2)))
+        contentView.addSubview(stackView)
+        
+        return contentView
+    }
+    
+    private func sizeToFitLabel(text: String? = "", width: CGFloat, font: UIFont) -> UILabel {
+        let label = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: width, height: 0)))
+        label.numberOfLines = 0
+        label.font = font
+        label.text = text
+        label.textAlignment = .center
+        label.sizeToFit()
+        return label
     }
 }

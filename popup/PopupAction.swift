@@ -13,7 +13,6 @@ class PopupAction: NSObject {
     var title: String?
     var handler: (() -> Void)?
 
-//    init(title: String?, handler: @escaping (() -> Void)) {
     init(title: String?, handler: (() -> Void)? = nil) {
         self.title = title
         self.handler = handler

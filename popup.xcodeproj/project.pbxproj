@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE0041941EF389E2000F1E06 /* PopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0041931EF389E2000F1E06 /* PopupController.swift */; };
 		AE292FBB1EEFD8CE00877CFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE292FBA1EEFD8CE00877CFD /* AppDelegate.swift */; };
 		AE292FBD1EEFD8CE00877CFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE292FBC1EEFD8CE00877CFD /* ViewController.swift */; };
 		AE292FC01EEFD8CE00877CFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE292FBE1EEFD8CE00877CFD /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE0041931EF389E2000F1E06 /* PopupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupController.swift; sourceTree = "<group>"; };
 		AE292FB71EEFD8CE00877CFD /* popup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = popup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE292FBA1EEFD8CE00877CFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE292FBC1EEFD8CE00877CFD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,10 +65,11 @@
 				AE292FBA1EEFD8CE00877CFD /* AppDelegate.swift */,
 				AE292FBC1EEFD8CE00877CFD /* ViewController.swift */,
 				AE292FBE1EEFD8CE00877CFD /* Main.storyboard */,
-				AE292FD41EEFDFC700877CFD /* Popup.storyboard */,
 				AE292FC11EEFD8CE00877CFD /* Assets.xcassets */,
 				AE292FC31EEFD8CE00877CFD /* LaunchScreen.storyboard */,
 				AE292FC61EEFD8CE00877CFD /* Info.plist */,
+				AE292FD41EEFDFC700877CFD /* Popup.storyboard */,
+				AE0041931EF389E2000F1E06 /* PopupController.swift */,
 				AE292FD61EEFE5EB00877CFD /* PopupBaseController.swift */,
 				AE292FD81EEFEA6F00877CFD /* PopupAction.swift */,
 			);
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE0041941EF389E2000F1E06 /* PopupController.swift in Sources */,
 				AE292FBD1EEFD8CE00877CFD /* ViewController.swift in Sources */,
 				AE292FBB1EEFD8CE00877CFD /* AppDelegate.swift in Sources */,
 				AE292FD91EEFEA6F00877CFD /* PopupAction.swift in Sources */,
