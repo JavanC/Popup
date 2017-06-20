@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AE0041941EF389E2000F1E06 /* PopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0041931EF389E2000F1E06 /* PopupController.swift */; };
+		AE0041A21EF8D265000F1E06 /* PopupController+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0041A11EF8D265000F1E06 /* PopupController+UIColor.swift */; };
 		AE292FBB1EEFD8CE00877CFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE292FBA1EEFD8CE00877CFD /* AppDelegate.swift */; };
 		AE292FBD1EEFD8CE00877CFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE292FBC1EEFD8CE00877CFD /* ViewController.swift */; };
 		AE292FC01EEFD8CE00877CFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE292FBE1EEFD8CE00877CFD /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		AE0041931EF389E2000F1E06 /* PopupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupController.swift; sourceTree = "<group>"; };
+		AE0041A11EF8D265000F1E06 /* PopupController+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PopupController+UIColor.swift"; sourceTree = "<group>"; };
 		AE292FB71EEFD8CE00877CFD /* popup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = popup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE292FBA1EEFD8CE00877CFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE292FBC1EEFD8CE00877CFD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				AE0041931EF389E2000F1E06 /* PopupController.swift */,
 				AE292FD61EEFE5EB00877CFD /* PopupBaseController.swift */,
 				AE292FD81EEFEA6F00877CFD /* PopupAction.swift */,
+				AE0041A11EF8D265000F1E06 /* PopupController+UIColor.swift */,
 			);
 			path = popup;
 			sourceTree = "<group>";
@@ -108,7 +111,7 @@
 				TargetAttributes = {
 					AE292FB61EEFD8CE00877CFD = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 5332NKLEL7;
+						DevelopmentTeam = 7K3RNRUFQU;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE0041A21EF8D265000F1E06 /* PopupController+UIColor.swift in Sources */,
 				AE0041941EF389E2000F1E06 /* PopupController.swift in Sources */,
 				AE292FBD1EEFD8CE00877CFD /* ViewController.swift in Sources */,
 				AE292FBB1EEFD8CE00877CFD /* AppDelegate.swift in Sources */,
@@ -277,8 +281,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5332NKLEL7;
+				DEVELOPMENT_TEAM = 7K3RNRUFQU;
 				INFOPLIST_FILE = popup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Javan.popup;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -290,8 +295,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 5332NKLEL7;
+				DEVELOPMENT_TEAM = 7K3RNRUFQU;
 				INFOPLIST_FILE = popup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Javan.popup;
 				PRODUCT_NAME = "$(TARGET_NAME)";

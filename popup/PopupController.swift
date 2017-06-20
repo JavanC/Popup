@@ -26,6 +26,12 @@ class PopupController: PopupBaseController {
     
     override func viewDidLoad() {
         
+        // Setup 'color' for popup
+        self.titleColor     = UIColorFromHex(0x434F5A)
+        self.messageColor   = UIColorFromHex(0x8A8B87)
+        self.defaultColor   = UIColorFromHex(0x76C9CF)
+        self.cancelColor    = UIColorFromHex(0xA3A49F)
+        
         // Setup 'stackView'
         let stackView = UIStackView()
         let stackViewWidth = popupWidth - horizontalPadding * 2
@@ -37,7 +43,6 @@ class PopupController: PopupBaseController {
         
         // Setup 'image' If need
         if let imageView = imageView {
-            imageView.backgroundColor = .red
             self.constraintFrameSize(view: imageView)
             stackView.addArrangedSubview(imageView)
             stackViewHeigh += imageView.frame.height + spacing
@@ -46,8 +51,7 @@ class PopupController: PopupBaseController {
         // Setup 'title' If need
         if let title = title {
             let titleLabel = self.sizeToFitLabel(text: title, width: stackViewWidth, font: titleFont)
-            print(titleLabel.frame)
-            titleLabel.backgroundColor = UIColor.brown
+            titleLabel.textColor = titleColor
             self.constraintFrameSize(view: titleLabel)
             stackView.addArrangedSubview(titleLabel)
             stackViewHeigh += titleLabel.frame.height + spacing
@@ -65,7 +69,7 @@ class PopupController: PopupBaseController {
         // Setup 'message' If need
         if let message = message {
             let messageLabel = self.sizeToFitLabel(text: message, width: stackViewWidth, font: messageFont)
-            messageLabel.backgroundColor = UIColor.blue
+            messageLabel.textColor = messageColor
             self.constraintFrameSize(view: messageLabel)
             stackView.addArrangedSubview(messageLabel)
             stackViewHeigh += messageLabel.frame.height

@@ -8,13 +8,22 @@
 
 import UIKit
 
+public enum PopupActionStyle : Int {
+    
+    case `default`
+    
+    case cancel
+}
+
 class PopupAction: NSObject {
     
     var title: String?
+    var style: PopupActionStyle!
     var handler: (() -> Void)?
 
-    init(title: String?, handler: (() -> Void)? = nil) {
+    init(title: String?, style: PopupActionStyle, handler: (() -> Void)?) {
         self.title = title
+        self.style = style
         self.handler = handler
     }
 }

@@ -19,7 +19,12 @@ open class PopupBaseController: UIViewController {
     let verticalPadding:CGFloat     = 34.0
     let horizontalPadding:CGFloat   = 25.0
     let spacing:CGFloat             = 10.0
-    
+   
+    var titleColor   = UIColorFromHex(0x434F5A)
+    var messageColor = UIColorFromHex(0x8A8B87)
+    var defaultColor = UIColorFromHex(0x76C9CF)
+    var cancelColor  = UIColorFromHex(0xA3A49F)
+   
     var actions = [PopupAction]()
     var buttons = [UIButton]()
     var message:String?
@@ -28,13 +33,11 @@ open class PopupBaseController: UIViewController {
     
     public convenience init(title: String?, message: String?) {
         self.init()
-        print("init")
         self.title = title
         self.message = message
     }
     
     public func show(in viewController: UIViewController) {
-        print("show")
         definesPresentationContext = true
         modalPresentationStyle = .overFullScreen
         view.alpha = 0.0
@@ -48,18 +51,15 @@ open class PopupBaseController: UIViewController {
     }
 
     func addAction(action: PopupAction) {
-        print("addAction")
         self.actions.append(action)
     }
     
-    func addAction(title: String?, handler: (() -> Void)? = nil) {
-        print("addAction")
-        let action = PopupAction(title: title, handler: handler)
+    func addAction(title: String?, style: PopupActionStyle, handler: (() -> Void)?) {
+        let action = PopupAction(title: title, style: style, handler: handler)
         self.actions.append(action)
     }
     
     func setupContenView(view: UIView) {
-        print("setupContenView")
         self.contentView = view
     }
 
@@ -67,7 +67,6 @@ open class PopupBaseController: UIViewController {
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
         self.configurePopupView()
         self.setupConstraints()
     }
@@ -97,17 +96,21 @@ open class PopupBaseController: UIViewController {
         // Setup 'buttons'
         for action in actions {
             let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.backgroundColor = .gray
             button.setTitle(action.title, for: .normal)
             button.addTarget(self, action: #selector(didClickButton(_:)), for: .touchUpInside)
+            
+            let styleColor = (action.style == .cancel) ? cancelColor : defaultColor
+            let buttonColor = UIImage.with(color: styleColor)
+            let buttonHighlightColor = UIImage.with(color: adjustBrightness(styleColor, amount: 0.9))
+            button.setBackgroundImage(buttonColor, for: .normal)
+            button.setBackgroundImage(buttonHighlightColor, for: .highlighted)
+            
             self.buttons.append(button)
             self.buttonView.addArrangedSubview(button)
         }
         
         // Setup 'button view'
         buttonView.translatesAutoresizingMaskIntoConstraints = false
-        buttonView.backgroundColor = UIColor.blue
         buttonView.spacing = 1
         buttonView.axis = (buttons.count == 2) ? .horizontal : .vertical
         buttonView.distribution = .fillEqually
@@ -143,19 +146,20 @@ open class PopupBaseController: UIViewController {
     // MARK: - Action
     
     func didClickButton(_ sender: UIButton) {
-        if let index = buttons.index(of: sender) {
-            // Do Handler if need
-            if let handler = actions[index].handler {
-                handler()
-            }
-            // Close Popup
-            UIView.animate(withDuration: 0.25, animations: {
-                self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-                self.view.alpha = 0.0
-            }, completion: { finished in
-                self.dismiss(animated: false, completion: nil)
+
+        // Close Popup
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.view.alpha = 0.0
+        }, completion: { finished in
+            self.dismiss(animated: false, completion: {
+                
+                // When completion, Do Handler if need.
+                if let index = self.buttons.index(of: sender), let handler = self.actions[index].handler {
+                    handler()
+                }
             })
-        }
+        })
     }
     
     // MARK: - Default Content View
@@ -168,8 +172,10 @@ open class PopupBaseController: UIViewController {
         
         let titleLabel = sizeToFitLabel(text: title, width: contentWidth, font: titleFont)
         titleLabel.backgroundColor = .blue
+        titleLabel.textColor = titleColor
         let messageLabel = sizeToFitLabel(text: message, width: contentWidth, font: messageFont)
         messageLabel.backgroundColor = UIColor.brown
+        messageLabel.textColor = messageColor
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, messageLabel])
         let stackViewHeight = titleLabel.frame.height + messageLabel.frame.height
