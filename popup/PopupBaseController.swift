@@ -10,17 +10,18 @@ import UIKit
 
 open class PopupBaseController: UIViewController {
     
-    private var popupView = UIView()
+    private var popupView  = UIView()
     private var buttonView = UIStackView()
     private var contentView: UIView!
     
-    let popupWidth: CGFloat = 270.0
-    let buttonHeight: CGFloat = 54.0
-    let padding: CGFloat = 25.0
+    let popupWidth: CGFloat         = 270.0
+    let buttonHeight: CGFloat       = 54.0
+    let verticalPadding:CGFloat     = 34.0
+    let horizontalPadding:CGFloat   = 25.0
+    let spacing:CGFloat             = 10.0
     
-    var buttons = [UIButton]()
     var actions = [PopupAction]()
-    
+    var buttons = [UIButton]()
     var message:String?
     
     // MARK: - Initial
@@ -158,10 +159,11 @@ open class PopupBaseController: UIViewController {
     }
     
     // MARK: - Default Content View
+    
     private func defaultContentView() -> UIView {
         
-        let contentWidth = popupWidth - padding * 2
-        let titleFont = UIFont(name: "Avenir-Medium", size: 17)!
+        let contentWidth = popupWidth - horizontalPadding * 2
+        let titleFont = UIFont(name: "Avenir-Medium", size: 20)!
         let messageFont = UIFont(name: "Avenir-Book", size: 14)!
         
         let titleLabel = sizeToFitLabel(text: title, width: contentWidth, font: titleFont)
@@ -171,16 +173,17 @@ open class PopupBaseController: UIViewController {
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, messageLabel])
         let stackViewHeight = titleLabel.frame.height + messageLabel.frame.height
-        stackView.frame = CGRect(x: padding, y: padding, width: contentWidth, height: stackViewHeight)
+        stackView.frame = CGRect(x: horizontalPadding, y: verticalPadding, width: contentWidth, height: stackViewHeight)
         stackView.axis = .vertical
+        stackView.spacing = spacing
         
-        contentView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: popupWidth, height: stackViewHeight + padding * 2)))
+        contentView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: popupWidth, height: stackViewHeight + verticalPadding * 2)))
         contentView.addSubview(stackView)
         
         return contentView
     }
     
-    private func sizeToFitLabel(text: String? = "", width: CGFloat, font: UIFont) -> UILabel {
+    func sizeToFitLabel(text: String? = "", width: CGFloat, font: UIFont) -> UILabel {
         let label = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: width, height: 0)))
         label.numberOfLines = 0
         label.font = font

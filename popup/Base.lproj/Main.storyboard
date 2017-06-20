@@ -48,83 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xu3-5w-Omx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916" y="-143.47826086956522"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="QZb-Ve-XRO">
-            <objects>
-                <viewController id="agN-Og-bft" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6U7-Fo-d77"/>
-                        <viewControllerLayoutGuide type="bottom" id="qc7-sF-iiP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xZp-7M-u1N">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdH-Oo-aBt">
-                                <rect key="frame" x="52" y="271" width="270" height="124"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yui-7V-pMa">
-                                        <rect key="frame" x="0.0" y="0.0" width="270" height="70"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tcO-uW-EaF">
-                                                <rect key="frame" x="10" y="10" width="250" height="50"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Jrx-IC-uZT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="O5u-2P-VmV"/>
-                                                        </constraints>
-                                                    </stackView>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="tcO-uW-EaF" firstAttribute="top" secondItem="Yui-7V-pMa" secondAttribute="top" constant="10" id="DMX-ko-uH4"/>
-                                            <constraint firstAttribute="trailing" secondItem="tcO-uW-EaF" secondAttribute="trailing" constant="10" id="ezm-SG-vWw"/>
-                                            <constraint firstItem="tcO-uW-EaF" firstAttribute="leading" secondItem="Yui-7V-pMa" secondAttribute="leading" constant="10" id="rNV-yC-fjD"/>
-                                            <constraint firstAttribute="bottom" secondItem="tcO-uW-EaF" secondAttribute="bottom" constant="10" id="seK-Wh-YXc"/>
-                                        </constraints>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2FU-e6-l6Q">
-                                        <rect key="frame" x="0.0" y="70" width="270" height="54"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yY-mA-AGH">
-                                                <rect key="frame" x="0.0" y="0.0" width="270" height="54"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="54" id="yP4-Iy-nJx"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Yui-7V-pMa" secondAttribute="trailing" id="3DS-WG-8zx"/>
-                                    <constraint firstAttribute="bottom" secondItem="2FU-e6-l6Q" secondAttribute="bottom" id="DfF-zZ-bBZ"/>
-                                    <constraint firstItem="Yui-7V-pMa" firstAttribute="top" secondItem="CdH-Oo-aBt" secondAttribute="top" id="SSg-Wd-ANH"/>
-                                    <constraint firstItem="2FU-e6-l6Q" firstAttribute="top" secondItem="Yui-7V-pMa" secondAttribute="bottom" id="TRw-Mx-SCl"/>
-                                    <constraint firstItem="2FU-e6-l6Q" firstAttribute="leading" secondItem="CdH-Oo-aBt" secondAttribute="leading" id="VDC-Lg-VJY"/>
-                                    <constraint firstAttribute="width" constant="270" id="hRp-wW-p5C"/>
-                                    <constraint firstItem="Yui-7V-pMa" firstAttribute="leading" secondItem="CdH-Oo-aBt" secondAttribute="leading" id="tge-PD-Q8d"/>
-                                    <constraint firstAttribute="trailing" secondItem="2FU-e6-l6Q" secondAttribute="trailing" id="yu3-4W-jG7"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="CdH-Oo-aBt" firstAttribute="centerX" secondItem="xZp-7M-u1N" secondAttribute="centerX" id="5EV-hZ-UVj"/>
-                            <constraint firstItem="CdH-Oo-aBt" firstAttribute="centerY" secondItem="xZp-7M-u1N" secondAttribute="centerY" id="BEV-2b-MBg"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Twa-aa-SYA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1749.5999999999999" y="-138.0809595202399"/>
+            <point key="canvasLocation" x="443" y="-144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bdv-IN-0E8">
@@ -143,7 +67,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oWW-tt-7Fm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-23.199999999999999" y="-143.47826086956522"/>
+            <point key="canvasLocation" x="-294" y="-144"/>
         </scene>
     </scenes>
 </document>

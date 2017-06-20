@@ -10,55 +10,82 @@ import UIKit
 
 class PopupController: PopupBaseController {
 
-//    var popupTitle: String?
-//    var message: String?
-
+    var imageView: UIImageView?
+    let titleFont = UIFont(name: "Avenir-Medium", size: 20)!
+    let messageFont = UIFont(name: "Avenir-Book", size: 14)!
     
     // MARK: - Initial
-    
-//    static func initial(title: String?, message: String?) -> PopupController {
-//        let vc = PopupController()
-//        vc.popupTitle = title
-//        vc.message = message
-//        return vc
-//    }
 
+    func setupImage(name: String) {
+        guard let image = UIImage(named: name) else { return }
+        self.imageView = UIImageView(image: image)
+        self.imageView?.frame.size = CGSize(width: 100, height: 100)
+    }
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        
+        // Setup 'stackView'
+        let stackView = UIStackView()
+        let stackViewWidth = popupWidth - horizontalPadding * 2
+        var stackViewHeigh:CGFloat = 0
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.spacing = spacing
+        
+        // Setup 'image' If need
+        if let imageView = imageView {
+            imageView.backgroundColor = .red
+            self.constraintFrameSize(view: imageView)
+            stackView.addArrangedSubview(imageView)
+            stackViewHeigh += imageView.frame.height + spacing
+        }
+        
+        // Setup 'title' If need
+        if let title = title {
+            let titleLabel = self.sizeToFitLabel(text: title, width: stackViewWidth, font: titleFont)
+            print(titleLabel.frame)
+            titleLabel.backgroundColor = UIColor.brown
+            self.constraintFrameSize(view: titleLabel)
+            stackView.addArrangedSubview(titleLabel)
+            stackViewHeigh += titleLabel.frame.height + spacing
+        }
+        
+        // Setup 'line' if has no image
+        if imageView == nil {
+            let line = UIView(frame: CGRect(origin: .zero, size: CGSize(width: stackViewWidth, height: 0.5)))
+            line.backgroundColor = UIColor.gray
+            self.constraintFrameSize(view: line)
+            stackView.addArrangedSubview(line)
+            stackViewHeigh += line.frame.height + spacing
+        }
+        
+        // Setup 'message' If need
+        if let message = message {
+            let messageLabel = self.sizeToFitLabel(text: message, width: stackViewWidth, font: messageFont)
+            messageLabel.backgroundColor = UIColor.blue
+            self.constraintFrameSize(view: messageLabel)
+            stackView.addArrangedSubview(messageLabel)
+            stackViewHeigh += messageLabel.frame.height
+        }
+        
+        // Setup 'contentView'
+        let contentView = UIView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(stackView)
+        contentView.frame.size = CGSize(width: self.popupWidth, height: stackViewHeigh + verticalPadding * 2)
+        stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        self.setupContenView(view: contentView)
 
-//        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: popupWidth, height: 1000))
-//        titleLabel.text = popupTitle
-//        titleLabel.textAlignment = .center
-//        titleLabel.numberOfLines = 0
-//        titleLabel.backgroundColor = .green
-//        titleLabel.sizeToFit()
-//        
-//        print(titleLabel.frame)
-//        setupContenView(view: titleLabel)
-        
-        
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: popupWidth, height: <#T##Int#>)
-        
-        //        self.titleLabel.text = popupTitle
-        //        self.setupMessage(message: message)
-        //        self.configureButtonView()
-        
+        // Setup 'Popup Base Controller'
+        super.viewDidLoad()
     }
     
-    /*func setupMessage(message: String?) {
-     let width = self.contentView.frame.width
-     let content = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: 1000))
-     content.text = self.message
-     content.textAlignment = .center
-     content.numberOfLines = 0
-     content.sizeToFit()
-     content.backgroundColor = UIColor.red
-     print(content.frame.height)
-     if content.frame.height > self.contentView.frame.height {
-     contentViewHeightConstraint.constant = content.frame.height
-     }
-     contentView.addSubview(content)
-     }*/
+    private func constraintFrameSize(view: UIView) {
+        view.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
+        view.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+    }
 }

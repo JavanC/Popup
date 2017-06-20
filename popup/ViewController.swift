@@ -71,17 +71,24 @@ class ViewController: UIViewController {
 //        self.navigationController?.pushViewController(popup, animated: true)
         
 
-        let popup = PopupBaseController(title: longTest ? longTitle : "Short Title", message: longTest ? longMessage : "Short Message")
+//        let popup = PopupBaseController(title: longTest ? longTitle : "Short Title", message: longTest ? longMessage : "Short Message")
 //        popup.setupContenView(view: view)
+        let popup = PopupController(title: longTest ? longTitle : "Short Title", message: longTest ? longMessage : "Short Message")
+        
+        popup.setupImage(name: "img_auth_camera")
+        
         popup.addAction(title: "OK", handler: {
             print("OKOKOK")
         })
         popup.addAction(title: "Cancel") { 
             print("Cancel")
         }
-//        popup.addAction(title: "hello") {
-//            print("Hello")
-//        }
+        popup.addAction(title: "hello") {
+//            let popup2 = PopupController(title: "ff", message: "asdf")
+//            popup2.addAction(title: "OK")
+//            popup2.show(in: self)
+            print("Hello")
+        }
         popup.show(in: self)
         
     }
