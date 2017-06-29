@@ -46,6 +46,8 @@ class ViewController: UIViewController {
 //        let popup = PopupBaseController(title: longTest ? longTitle : "Short Title", message: longTest ? longMessage : "Short Message")
 //        popup.setupContenView(view: view)
         let popup = PopupController(title: longTest ? longTitle : "Short Title", message: longTest ? longMessage : "Short Message")
+        popup.addMessageUnderlineAttributed(text: "Internet")
+        popup.addMessageSizeAttributed(text: "Internet", size: 20)
         
         popup.setupImage(name: "img_auth_camera")
         

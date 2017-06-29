@@ -9,10 +9,17 @@
 import UIKit
 
 class PopupController: PopupBaseController {
-
-    var imageView: UIImageView?
-    let titleFont = UIFont(name: "Avenir-Medium", size: 20)!
-    let messageFont = UIFont(name: "Avenir-Book", size: 14)!
+    
+    private var imageView: UIImageView?
+    private var messageAttributes = [MessageAttribute]()
+    private struct MessageAttribute {
+        var text: String
+        var key: String
+        var value: Any
+    }
+    
+    let titleFont = UIFont(name: "Avenir-Medium", size: 20) ?? UIFont.systemFont(ofSize: 20)
+    let messageFont = UIFont(name: "Avenir-Book", size: 14) ?? UIFont.systemFont(ofSize: 14)
     
     // MARK: - Initial
 
@@ -20,6 +27,18 @@ class PopupController: PopupBaseController {
         guard let image = UIImage(named: name) else { return }
         self.imageView = UIImageView(image: image)
         self.imageView?.frame.size = CGSize(width: 100, height: 100)
+    }
+    
+    func addMeesageAttributed(text: String, with value: Any, for key: String) {
+        self.messageAttributes.append(MessageAttribute(text: text, key: key, value: value))
+    }
+    
+    func addMessageUnderlineAttributed(text: String) {
+        self.addMeesageAttributed(text: text, with: NSUnderlineStyle.styleSingle.rawValue, for: NSUnderlineStyleAttributeName)
+    }
+    
+    func addMessageSizeAttributed(text: String, size: CGFloat) {
+        self.addMeesageAttributed(text: text, with: messageFont.withSize(size), for: NSFontAttributeName)
     }
     
     // MARK: - Lifecycle
@@ -69,6 +88,7 @@ class PopupController: PopupBaseController {
         // Setup 'message' If need
         if let message = message {
             let messageLabel = self.sizeToFitLabel(text: message, width: stackViewWidth, font: messageFont)
+            self.setupAttributes(label: messageLabel)
             messageLabel.textColor = messageColor
             self.constraintFrameSize(view: messageLabel)
             stackView.addArrangedSubview(messageLabel)
@@ -88,8 +108,24 @@ class PopupController: PopupBaseController {
         super.viewDidLoad()
     }
     
+    // MARK: - Constraint View with View Frame Size
+    
     private func constraintFrameSize(view: UIView) {
         view.heightAnchor.constraint(equalToConstant: view.frame.height).isActive = true
         view.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+    }
+    
+    // MARK: - Setup Label Attributes
+    
+    private func setupAttributes(label: UILabel) {
+        guard let text = label.text else { return }
+
+        let mutableAttributedString = NSMutableAttributedString(string: text)
+        for messageAttribute in messageAttributes {
+            let range = (text as NSString).range(of: messageAttribute.text)
+            mutableAttributedString.addAttribute(messageAttribute.key, value: messageAttribute.value, range: range)
+        }
+        label.attributedText = mutableAttributedString
+        label.sizeToFit()
     }
 }
