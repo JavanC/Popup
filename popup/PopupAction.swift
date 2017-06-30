@@ -9,9 +9,7 @@
 import UIKit
 
 public enum PopupActionStyle : Int {
-    
     case `default`
-    
     case cancel
 }
 

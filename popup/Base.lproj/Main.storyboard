@@ -22,29 +22,75 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVD-A5-6nU">
-                                <rect key="frame" x="164" y="286.5" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="click:" destination="rbt-kK-wgC" eventType="touchUpInside" id="ILp-09-J8H"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWG-xd-IgF">
-                                <rect key="frame" x="166" y="140.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rHz-Bx-q3p">
+                                <rect key="frame" x="37" y="216.5" width="300" height="170"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOK-yX-vVS">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="uju-lW-KzD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="BasePopup">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didClickButton:" destination="rbt-kK-wgC" eventType="touchUpInside" id="UOW-cl-ak3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVD-A5-6nU">
+                                        <rect key="frame" x="0.0" y="60" width="300" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="FdZ-8J-bt2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="PopupController">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didClickButton:" destination="rbt-kK-wgC" eventType="touchUpInside" id="bSq-nT-UxH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONn-Hn-WGg">
+                                        <rect key="frame" x="0.0" y="120" width="300" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="nuL-To-HIc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="PopupCustomController">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didClickButton:" destination="rbt-kK-wgC" eventType="touchUpInside" id="Buj-Ry-Qd1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ONn-Hn-WGg" firstAttribute="leading" secondItem="rHz-Bx-q3p" secondAttribute="leading" id="6pV-1G-K9E"/>
+                                    <constraint firstAttribute="trailing" secondItem="KOK-yX-vVS" secondAttribute="trailing" id="FRg-qB-Ev3"/>
+                                    <constraint firstItem="BVD-A5-6nU" firstAttribute="leading" secondItem="rHz-Bx-q3p" secondAttribute="leading" id="FW6-5u-57o"/>
+                                    <constraint firstAttribute="trailing" secondItem="BVD-A5-6nU" secondAttribute="trailing" id="X57-ai-eKH"/>
+                                    <constraint firstItem="KOK-yX-vVS" firstAttribute="leading" secondItem="rHz-Bx-q3p" secondAttribute="leading" id="ngb-Pd-P2n"/>
+                                    <constraint firstAttribute="trailing" secondItem="ONn-Hn-WGg" secondAttribute="trailing" id="qEP-UJ-hRu"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wWG-xd-IgF" firstAttribute="centerY" secondItem="9Gg-T6-ISk" secondAttribute="centerY" multiplier="0.5" id="3NJ-ix-V50"/>
-                            <constraint firstItem="BVD-A5-6nU" firstAttribute="centerY" secondItem="9Gg-T6-ISk" secondAttribute="centerY" id="GrL-EO-mIU"/>
-                            <constraint firstItem="BVD-A5-6nU" firstAttribute="centerX" secondItem="9Gg-T6-ISk" secondAttribute="centerX" id="Q1d-as-ekg"/>
-                            <constraint firstItem="wWG-xd-IgF" firstAttribute="centerX" secondItem="9Gg-T6-ISk" secondAttribute="centerX" id="TYO-qY-KRB"/>
+                            <constraint firstItem="rHz-Bx-q3p" firstAttribute="centerY" secondItem="9Gg-T6-ISk" secondAttribute="centerY" id="6wZ-jf-R7m"/>
+                            <constraint firstItem="rHz-Bx-q3p" firstAttribute="width" secondItem="9Gg-T6-ISk" secondAttribute="width" multiplier="0.8" id="Apz-nW-Brl"/>
+                            <constraint firstItem="rHz-Bx-q3p" firstAttribute="centerX" secondItem="9Gg-T6-ISk" secondAttribute="centerX" id="Go2-nf-ukp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GKs-mP-oId"/>
+                    <connections>
+                        <outlet property="basePopupButton" destination="KOK-yX-vVS" id="Z29-ny-1uZ"/>
+                        <outlet property="customPopupButton" destination="ONn-Hn-WGg" id="OAe-04-QZ9"/>
+                        <outlet property="defaultPopupButton" destination="BVD-A5-6nU" id="fBE-6b-saR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xu3-5w-Omx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

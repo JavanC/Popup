@@ -19,7 +19,9 @@ open class PopupBaseController: UIViewController {
     let verticalPadding:CGFloat     = 34.0
     let horizontalPadding:CGFloat   = 25.0
     let spacing:CGFloat             = 10.0
-   
+    let titleFont    = UIFont(name: "Avenir-Medium", size: 20) ?? UIFont.systemFont(ofSize: 20)
+    let messageFont  = UIFont(name: "Avenir-Book", size: 14) ?? UIFont.systemFont(ofSize: 14)
+    
     var titleColor   = UIColorFromHex(0x434F5A)
     var messageColor = UIColorFromHex(0x8A8B87)
     var defaultColor = UIColorFromHex(0x76C9CF)
@@ -167,14 +169,9 @@ open class PopupBaseController: UIViewController {
     private func defaultContentView() -> UIView {
         
         let contentWidth = popupWidth - horizontalPadding * 2
-        let titleFont = UIFont(name: "Avenir-Medium", size: 20)!
-        let messageFont = UIFont(name: "Avenir-Book", size: 14)!
-        
         let titleLabel = sizeToFitLabel(text: title, width: contentWidth, font: titleFont)
-        titleLabel.backgroundColor = .blue
         titleLabel.textColor = titleColor
         let messageLabel = sizeToFitLabel(text: message, width: contentWidth, font: messageFont)
-        messageLabel.backgroundColor = UIColor.brown
         messageLabel.textColor = messageColor
         
         let stackView = UIStackView(arrangedSubviews: [titleLabel, messageLabel])

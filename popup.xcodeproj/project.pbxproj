@@ -14,9 +14,12 @@
 		AE292FC01EEFD8CE00877CFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE292FBE1EEFD8CE00877CFD /* Main.storyboard */; };
 		AE292FC21EEFD8CE00877CFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE292FC11EEFD8CE00877CFD /* Assets.xcassets */; };
 		AE292FC51EEFD8CE00877CFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE292FC31EEFD8CE00877CFD /* LaunchScreen.storyboard */; };
-		AE292FD51EEFDFC700877CFD /* Popup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE292FD41EEFDFC700877CFD /* Popup.storyboard */; };
 		AE292FD71EEFE5EB00877CFD /* PopupBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE292FD61EEFE5EB00877CFD /* PopupBaseController.swift */; };
 		AE292FD91EEFEA6F00877CFD /* PopupAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE292FD81EEFEA6F00877CFD /* PopupAction.swift */; };
+		AE8DA5F11F061C2700F609FE /* PopupCustomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8DA5F01F061C2700F609FE /* PopupCustomController.swift */; };
+		AE8DA5F31F061D9600F609FE /* PMEmailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE8DA5F21F061D9600F609FE /* PMEmailView.xib */; };
+		AE8DA5F51F061E5A00F609FE /* PMEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8DA5F41F061E5A00F609FE /* PMEmailView.swift */; };
+		AE8DA5F71F0622FE00F609FE /* XibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8DA5F61F0622FE00F609FE /* XibDesignable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +32,12 @@
 		AE292FC11EEFD8CE00877CFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE292FC41EEFD8CE00877CFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE292FC61EEFD8CE00877CFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE292FD41EEFDFC700877CFD /* Popup.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Popup.storyboard; sourceTree = "<group>"; };
 		AE292FD61EEFE5EB00877CFD /* PopupBaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupBaseController.swift; sourceTree = "<group>"; };
 		AE292FD81EEFEA6F00877CFD /* PopupAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupAction.swift; sourceTree = "<group>"; };
+		AE8DA5F01F061C2700F609FE /* PopupCustomController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupCustomController.swift; sourceTree = "<group>"; };
+		AE8DA5F21F061D9600F609FE /* PMEmailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PMEmailView.xib; sourceTree = "<group>"; };
+		AE8DA5F41F061E5A00F609FE /* PMEmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMEmailView.swift; sourceTree = "<group>"; };
+		AE8DA5F61F0622FE00F609FE /* XibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibDesignable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,16 +73,51 @@
 				AE292FBA1EEFD8CE00877CFD /* AppDelegate.swift */,
 				AE292FBC1EEFD8CE00877CFD /* ViewController.swift */,
 				AE292FBE1EEFD8CE00877CFD /* Main.storyboard */,
-				AE292FC11EEFD8CE00877CFD /* Assets.xcassets */,
 				AE292FC31EEFD8CE00877CFD /* LaunchScreen.storyboard */,
+				AE292FC11EEFD8CE00877CFD /* Assets.xcassets */,
 				AE292FC61EEFD8CE00877CFD /* Info.plist */,
-				AE292FD41EEFDFC700877CFD /* Popup.storyboard */,
+				AE8DA5EF1F06040400F609FE /* Popup */,
+			);
+			path = popup;
+			sourceTree = "<group>";
+		};
+		AE8DA5EF1F06040400F609FE /* Popup */ = {
+			isa = PBXGroup;
+			children = (
 				AE0041931EF389E2000F1E06 /* PopupController.swift */,
+				AE8DA5FA1F06278800F609FE /* PopupCustomController */,
 				AE292FD61EEFE5EB00877CFD /* PopupBaseController.swift */,
 				AE292FD81EEFEA6F00877CFD /* PopupAction.swift */,
 				AE0041A11EF8D265000F1E06 /* PopupController+UIColor.swift */,
 			);
-			path = popup;
+			name = Popup;
+			sourceTree = "<group>";
+		};
+		AE8DA5FA1F06278800F609FE /* PopupCustomController */ = {
+			isa = PBXGroup;
+			children = (
+				AE8DA5F01F061C2700F609FE /* PopupCustomController.swift */,
+				AE8DA5FB1F06280100F609FE /* PMEmailView */,
+				AE8DA5FC1F062C5C00F609FE /* XibDesignable */,
+			);
+			name = PopupCustomController;
+			sourceTree = "<group>";
+		};
+		AE8DA5FB1F06280100F609FE /* PMEmailView */ = {
+			isa = PBXGroup;
+			children = (
+				AE8DA5F21F061D9600F609FE /* PMEmailView.xib */,
+				AE8DA5F41F061E5A00F609FE /* PMEmailView.swift */,
+			);
+			name = PMEmailView;
+			sourceTree = "<group>";
+		};
+		AE8DA5FC1F062C5C00F609FE /* XibDesignable */ = {
+			isa = PBXGroup;
+			children = (
+				AE8DA5F61F0622FE00F609FE /* XibDesignable.swift */,
+			);
+			name = XibDesignable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,7 +183,7 @@
 				AE292FC51EEFD8CE00877CFD /* LaunchScreen.storyboard in Resources */,
 				AE292FC21EEFD8CE00877CFD /* Assets.xcassets in Resources */,
 				AE292FC01EEFD8CE00877CFD /* Main.storyboard in Resources */,
-				AE292FD51EEFDFC700877CFD /* Popup.storyboard in Resources */,
+				AE8DA5F31F061D9600F609FE /* PMEmailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +194,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE8DA5F51F061E5A00F609FE /* PMEmailView.swift in Sources */,
+				AE8DA5F11F061C2700F609FE /* PopupCustomController.swift in Sources */,
+				AE8DA5F71F0622FE00F609FE /* XibDesignable.swift in Sources */,
 				AE0041A21EF8D265000F1E06 /* PopupController+UIColor.swift in Sources */,
 				AE0041941EF389E2000F1E06 /* PopupController.swift in Sources */,
 				AE292FBD1EEFD8CE00877CFD /* ViewController.swift in Sources */,
